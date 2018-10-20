@@ -1,4 +1,4 @@
-package se.magnus.microservices.api.core.product;
+package se.magnus.api.core.product;
 
 public class Product {
     private final int productId;

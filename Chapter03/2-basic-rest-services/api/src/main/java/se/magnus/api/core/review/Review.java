@@ -1,4 +1,4 @@
-package se.magnus.microservices.api.core.review;
+package se.magnus.api.core.review;
 
 public class Review {
     private final int productId;

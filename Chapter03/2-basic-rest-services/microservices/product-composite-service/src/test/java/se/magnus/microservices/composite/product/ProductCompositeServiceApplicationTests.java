@@ -8,12 +8,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import se.magnus.microservices.api.core.product.Product;
-import se.magnus.microservices.api.core.recommendation.Recommendation;
-import se.magnus.microservices.api.core.review.Review;
+import se.magnus.api.core.product.Product;
+import se.magnus.api.core.recommendation.Recommendation;
+import se.magnus.api.core.review.Review;
 import se.magnus.microservices.composite.product.services.ProductCompositeIntegration;
-import se.magnus.microservices.util.exceptions.InvalidInputException;
-import se.magnus.microservices.util.exceptions.NotFoundException;
+import se.magnus.util.exceptions.InvalidInputException;
+import se.magnus.util.exceptions.NotFoundException;
 
 import static java.util.Collections.singletonList;
 import static org.mockito.Mockito.when;

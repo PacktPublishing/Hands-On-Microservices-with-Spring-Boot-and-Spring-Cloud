@@ -1,4 +1,4 @@
-package se.magnus.microservices.api.composite.product;
+package se.magnus.api.composite.product;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

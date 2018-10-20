@@ -1,4 +1,4 @@
-package se.magnus.microservices.api.core.recommendation;
+package se.magnus.api.core.recommendation;
 
 public class Recommendation {
     private final int productId;

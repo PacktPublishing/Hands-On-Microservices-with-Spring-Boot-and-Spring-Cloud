@@ -1,4 +1,4 @@
-package se.magnus.microservices.api.composite.product;
+package se.magnus.api.composite.product;
 
 public class ServiceAddresses {
     private final String cmp;

@@ -1,4 +1,4 @@
-package se.magnus.microservices.util.http;
+package se.magnus.util.http;
 
 import org.springframework.http.HttpStatus;
 

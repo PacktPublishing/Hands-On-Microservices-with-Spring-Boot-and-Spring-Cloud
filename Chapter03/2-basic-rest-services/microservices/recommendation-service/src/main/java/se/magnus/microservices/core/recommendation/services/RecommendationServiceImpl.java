@@ -4,11 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-import se.magnus.microservices.api.core.recommendation.Recommendation;
-import se.magnus.microservices.api.core.recommendation.RecommendationService;
-import se.magnus.microservices.util.exceptions.InvalidInputException;
-import se.magnus.microservices.util.exceptions.NotFoundException;
-import se.magnus.microservices.util.http.ServiceUtil;
+import se.magnus.api.core.recommendation.Recommendation;
+import se.magnus.api.core.recommendation.RecommendationService;
+import se.magnus.util.exceptions.InvalidInputException;
+import se.magnus.util.exceptions.NotFoundException;
+import se.magnus.util.http.ServiceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,7 @@ public class RecommendationServiceImpl implements RecommendationService {
         this.serviceUtil = serviceUtil;
     }
 
+    @Override
     public List<Recommendation> getRecommendations(int productId) {
 
         if (productId < 1) throw new InvalidInputException("Invalid productId: " + productId);

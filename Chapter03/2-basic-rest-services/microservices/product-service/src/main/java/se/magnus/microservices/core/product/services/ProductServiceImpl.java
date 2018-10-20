@@ -4,11 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-import se.magnus.microservices.api.core.product.Product;
-import se.magnus.microservices.api.core.product.ProductService;
-import se.magnus.microservices.util.exceptions.InvalidInputException;
-import se.magnus.microservices.util.exceptions.NotFoundException;
-import se.magnus.microservices.util.http.ServiceUtil;
+import se.magnus.api.core.product.Product;
+import se.magnus.api.core.product.ProductService;
+import se.magnus.util.exceptions.InvalidInputException;
+import se.magnus.util.exceptions.NotFoundException;
+import se.magnus.util.http.ServiceUtil;
 
 @RestController
 public class ProductServiceImpl implements ProductService {
@@ -22,6 +22,7 @@ public class ProductServiceImpl implements ProductService {
         this.serviceUtil = serviceUtil;
     }
 
+    @Override
     public Product getProduct(int productId) {
         LOG.debug("/product return the found product for productId={}", productId);
 

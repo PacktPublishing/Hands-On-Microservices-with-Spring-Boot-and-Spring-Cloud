@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@ComponentScan("se.magnus.microservices")
+@ComponentScan("se.magnus")
 public class ProductCompositeServiceApplication {
 
 	@Bean

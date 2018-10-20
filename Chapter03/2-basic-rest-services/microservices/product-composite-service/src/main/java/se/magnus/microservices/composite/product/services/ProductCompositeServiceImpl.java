@@ -2,12 +2,12 @@ package se.magnus.microservices.composite.product.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-import se.magnus.microservices.api.composite.product.*;
-import se.magnus.microservices.api.core.product.Product;
-import se.magnus.microservices.api.core.recommendation.Recommendation;
-import se.magnus.microservices.api.core.review.Review;
-import se.magnus.microservices.util.exceptions.NotFoundException;
-import se.magnus.microservices.util.http.ServiceUtil;
+import se.magnus.api.composite.product.*;
+import se.magnus.api.core.product.Product;
+import se.magnus.api.core.recommendation.Recommendation;
+import se.magnus.api.core.review.Review;
+import se.magnus.util.exceptions.NotFoundException;
+import se.magnus.util.http.ServiceUtil;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +24,7 @@ public class ProductCompositeServiceImpl implements ProductCompositeService {
         this.integration = integration;
     }
 
+    @Override
     public ProductAggregate getProduct(int productId) {
 
         Product product = integration.getProduct(productId);
