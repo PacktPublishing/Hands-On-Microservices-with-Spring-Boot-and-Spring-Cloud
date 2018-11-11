@@ -1,0 +1,79 @@
+api:
+
+  common:
+    version: 1.0.0
+    title: Sample API
+    description: Description of the API...
+    termsOfServiceUrl: MINE TERMS OF SERVICE URL
+    license: License
+    licenseUrl: MY LICENSE URL
+
+    contact:
+      name: Contact
+      url: My
+      email: me@mail.com
+
+  product-composite:
+    description: REST API for composite product information.
+
+    get-composite-product:
+      description: Returns a composite view of the specified product id
+      notes: |
+        # Normal response
+        If the requested product id is found the method will return information regarding:
+        1. Base product information
+        1. Reviews
+        1. Recommendations
+        1. Service Addresses\n(technical information regarding the addresses of the microservices that created the response)
+
+        # Expected partial and error responses
+        In the following cases, only a partial response be created (used to simplify testing of error conditions)
+
+        ## Product id 113
+        200 - Ok, but no recommendations will be returned
+
+        ## Product id 213
+        200 - Ok, but no reviews will be returned
+
+        ## Non numerical product id
+        400 - A <b>Bad Request</b> error will be returned
+
+        ## Product id 13
+        404 - A <b>Not Found</b> error will be returned
+
+        ## Negative product ids
+        422 - An <b>Unprocessable Entity</b> error will be returned
+
+server.port: 7000
+
+app:
+  product-service:
+    host: localhost
+    port: 7001
+  recommendation-service:
+    host: localhost
+    port: 7002
+  review-service:
+    host: localhost
+    port: 7003
+
+logging:
+  level:
+    root: INFO
+    se.magnus.microservices: DEBUG
+
+---
+spring.profiles: docker
+
+server.port: 8080
+
+app:
+  product-service:
+    host: product
+    port: 8080
+  recommendation-service:
+    host: recommendation
+    port: 8080
+  review-service:
+    host: review
+    port: 8080
