@@ -14,7 +14,6 @@ api:
       email: me@mail.com
 
   product-composite:
-    description: REST API for composite product information.
 
     get-composite-product:
       description: Returns a composite view of the specified product id
