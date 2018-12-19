@@ -72,11 +72,10 @@ public class RecommendationServiceApplicationTests {
 			.uri("/recommendation?productId=" + productIdNotFound)
 			.accept(APPLICATION_JSON_UTF8)
 			.exchange()
-			.expectStatus().isNotFound()
+			.expectStatus().isOk()
 			.expectHeader().contentType(APPLICATION_JSON_UTF8)
 			.expectBody()
-			.jsonPath("$.path").isEqualTo("/recommendation")
-			.jsonPath("$.message").isEqualTo("No recommendations found for productId: " + productIdNotFound);
+			.jsonPath("$.length()").isEqualTo(0);
 	}
 
 	@Test

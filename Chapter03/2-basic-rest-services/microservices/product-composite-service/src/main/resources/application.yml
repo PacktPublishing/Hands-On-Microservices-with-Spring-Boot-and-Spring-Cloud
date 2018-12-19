@@ -14,4 +14,4 @@ app:
 logging:
   level:
     root: INFO
-    se.magnus.microservices: DEBUG
+    se.magnus: DEBUG

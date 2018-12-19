@@ -72,11 +72,10 @@ public class ReviewServiceApplicationTests {
 			.uri("/review?productId=" + productIdNotFound)
 			.accept(APPLICATION_JSON_UTF8)
 			.exchange()
-			.expectStatus().isNotFound()
+			.expectStatus().isOk()
 			.expectHeader().contentType(APPLICATION_JSON_UTF8)
 			.expectBody()
-			.jsonPath("$.path").isEqualTo("/review")
-			.jsonPath("$.message").isEqualTo("No reviews found for productId: " + productIdNotFound);
+			.jsonPath("$.length()").isEqualTo(0);
 	}
 
 	@Test

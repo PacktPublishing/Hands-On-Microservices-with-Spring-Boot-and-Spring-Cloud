@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import se.magnus.api.core.review.Review;
 import se.magnus.api.core.review.ReviewService;
 import se.magnus.util.exceptions.InvalidInputException;
-import se.magnus.util.exceptions.NotFoundException;
 import se.magnus.util.http.ServiceUtil;
 
 import java.util.ArrayList;
@@ -30,7 +29,10 @@ public class ReviewServiceImpl implements ReviewService {
 
         if (productId < 1) throw new InvalidInputException("Invalid productId: " + productId);
 
-        if (productId == 213) throw new NotFoundException("No reviews found for productId: " + productId);
+        if (productId == 213) {
+            LOG.debug("No reviews found for productId: {}", productId);
+            return  new ArrayList<>();
+        }
 
         List<Review> list = new ArrayList<>();
         list.add(new Review(productId, 1, "Author 1", "Subject 1", "Content 1", serviceUtil.getServiceAddress()));
