@@ -12,14 +12,14 @@ import se.magnus.api.event.Event;
 import se.magnus.util.exceptions.EventProcessingException;
 
 @EnableBinding(Sink.class)
-public class MessagingProcessor {
+public class MessageProcessor {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MessagingProcessor.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MessageProcessor.class);
 
     private final ReviewService reviewService;
 
     @Autowired
-    public MessagingProcessor(ReviewService reviewService) {
+    public MessageProcessor(ReviewService reviewService) {
         this.reviewService = reviewService;
     }
 
