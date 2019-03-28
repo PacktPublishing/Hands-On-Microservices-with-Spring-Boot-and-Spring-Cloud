@@ -1,0 +1,66 @@
+server.port: 7002
+
+spring.application.name: recommendation
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    initialInstanceInfoReplicationIntervalSeconds: 5
+    registryFetchIntervalSeconds: 5
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 5
+
+spring.data.mongodb.uri: mongodb://localhost:27017/recommendation-db
+
+spring.cloud.stream:
+  defaultBinder: rabbit
+  default.contentType: application/json
+  bindings.input:
+    destination: recommendations
+    group: recommendationsGroup
+
+spring.cloud.stream.bindings.input.consumer:
+  maxAttempts: 3
+  backOffInitialInterval: 500
+  backOffMaxInterval: 1000
+  backOffMultiplier: 2.0
+
+spring.cloud.stream.rabbit.bindings.input.consumer:
+  autoBindDlq: true
+  republishToDlq: true
+
+spring.cloud.stream.kafka.bindings.input.consumer:
+  enableDlq: true
+
+spring.cloud.stream.kafka.binder:
+  brokers: 127.0.0.1
+  defaultBrokerPort: 9092
+
+spring.rabbitmq:
+  host: 127.0.0.1
+  port: 5672
+  username: guest
+  password: guest
+
+logging:
+  level:
+    root: INFO
+    se.magnus: DEBUG
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+
+management.endpoint.health.show-details: "ALWAYS"
+management.endpoints.web.exposure.include: "*"
+---
+spring.profiles: docker
+
+server.port: 8080
+
+eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka/
+
+spring.data.mongodb.uri: mongodb://mongodb:27017/recommendation-db
+
+spring.rabbitmq.host: rabbitmq
+
+spring.cloud.stream.kafka.binder.brokers: kafka
