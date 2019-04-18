@@ -1,0 +1,38 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.4.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+plugins {
+	id "io.spring.dependency-management" version "1.0.5.RELEASE"
+}
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+group = 'se.magnus.microservices.api'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+}
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-webflux')
+	implementation('io.springfox:springfox-swagger2:3.0.0-SNAPSHOT')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+}
