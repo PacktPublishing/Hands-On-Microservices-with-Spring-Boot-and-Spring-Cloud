@@ -20,7 +20,8 @@ ext {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.cloud:spring-cloud-config-server'
+	// Applying security fix CVE-2019-3799, see https://spring.io/blog/2019/04/17/cve-2019-3799-spring-cloud-config-2-1-2-2-0-4-1-4-6-released
+	implementation 'org.springframework.cloud:spring-cloud-config-server:2.1.2.RELEASE'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

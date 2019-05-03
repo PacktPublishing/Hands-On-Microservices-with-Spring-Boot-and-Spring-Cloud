@@ -85,7 +85,7 @@ spring.profiles: docker
 server.port: 8080
 
 ---
-spring.profiles:  streaming_partitioned
+spring.profiles: streaming_partitioned
 
 spring.cloud.stream.bindings.output-products.producer:
   partition-key-expression: payload.key
