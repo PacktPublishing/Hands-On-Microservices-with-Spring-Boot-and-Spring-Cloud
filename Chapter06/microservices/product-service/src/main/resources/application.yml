@@ -1,16 +1,18 @@
 server.port: 7001
 
-spring.data.mongodb.uri: mongodb://localhost:27017/product-db
+spring.data.mongodb:
+  host: localhost
+  port: 27017
+  database: product-db
 
 logging:
   level:
     root: INFO
     se.magnus: DEBUG
     org.springframework.data.mongodb.core.MongoTemplate: DEBUG
-
 ---
 spring.profiles: docker
 
-spring.data.mongodb.uri: mongodb://mongodb:27017/product-db
+spring.data.mongodb.host: mongodb
 
 server.port: 8080

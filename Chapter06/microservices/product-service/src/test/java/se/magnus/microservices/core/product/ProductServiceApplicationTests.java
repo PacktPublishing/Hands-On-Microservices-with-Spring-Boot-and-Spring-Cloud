@@ -19,7 +19,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 import static reactor.core.publisher.Mono.just;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment=RANDOM_PORT)
+@SpringBootTest(webEnvironment=RANDOM_PORT, properties = {"spring.data.mongodb.port: 0"})
 public class ProductServiceApplicationTests {
 
     @Autowired

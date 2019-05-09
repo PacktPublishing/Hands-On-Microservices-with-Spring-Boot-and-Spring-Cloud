@@ -78,14 +78,10 @@ public class PersistenceTests {
         assertEqualsProduct(savedEntity, entity.get());
     }
 
-    @Test
+    @Test(expected = DuplicateKeyException.class)
    	public void duplicateError() {
-        try {
-            ProductEntity entity = new ProductEntity(savedEntity.getProductId(), "n", 1);
-            repository.save(entity);
-
-            fail("Expected an DuplicateKeyException");
-        } catch (DuplicateKeyException dke) {}
+        ProductEntity entity = new ProductEntity(savedEntity.getProductId(), "n", 1);
+        repository.save(entity);
     }
 
     @Test

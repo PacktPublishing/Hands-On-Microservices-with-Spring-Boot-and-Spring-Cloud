@@ -125,7 +125,7 @@ services:
     healthcheck:
       test: "/usr/bin/mysql --user=user --password=pwd --execute \"SHOW DATABASES;\""
       interval: 10s
-      timeout: 2s
+      timeout: 5s
       retries: 5
 
   kafka:

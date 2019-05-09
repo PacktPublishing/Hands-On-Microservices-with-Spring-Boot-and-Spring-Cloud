@@ -1,6 +1,9 @@
 server.port: 7002
 
-spring.data.mongodb.uri: mongodb://localhost:27017/recommendation-db
+spring.data.mongodb:
+  host: localhost
+  port: 27017
+  database: recommendation-db
 
 logging:
   level:
@@ -11,6 +14,6 @@ logging:
 ---
 spring.profiles: docker
 
-spring.data.mongodb.uri: mongodb://mongodb:27017/recommendation-db
+spring.data.mongodb.host: mongodb
 
 server.port: 8080

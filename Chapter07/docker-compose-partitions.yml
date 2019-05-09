@@ -103,8 +103,8 @@ services:
     command: mongod --smallfiles
     healthcheck:
       test: "mongo --eval 'db.stats().ok'"
-      interval: 3s
-      timeout: 2s
+      interval: 10s
+      timeout: 5s
       retries: 5
 
   # $ mysql -uroot -h127.0.0.1 -p
@@ -119,17 +119,17 @@ services:
       - MYSQL_PASSWORD=pwd
     healthcheck:
       test: "/usr/bin/mysql --user=user --password=pwd --execute \"SHOW DATABASES;\""
-      interval: 3s
-      timeout: 2s
+      interval: 10s
+      timeout: 5s
       retries: 5
 
   rabbitmq:
-    image: rabbitmq:3-management
+    image: rabbitmq:3.7.8-management
     ports:
       - 5672:5672
       - 15672:15672
     healthcheck:
       test: ["CMD", "rabbitmqctl", "status"]
-      interval: 3s
-      timeout: 2s
+      interval: 10s
+      timeout: 5s
       retries: 5

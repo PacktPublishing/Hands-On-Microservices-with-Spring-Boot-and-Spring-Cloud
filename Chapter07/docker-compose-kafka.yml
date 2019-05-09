@@ -119,8 +119,8 @@ services:
       - MYSQL_PASSWORD=pwd
     healthcheck:
       test: "/usr/bin/mysql --user=user --password=pwd --execute \"SHOW DATABASES;\""
-      interval: 3s
-      timeout: 2s
+      interval: 10s
+      timeout: 5s
       retries: 5
 
   kafka:

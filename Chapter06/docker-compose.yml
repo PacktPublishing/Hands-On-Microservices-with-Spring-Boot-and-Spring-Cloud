@@ -49,6 +49,6 @@ services:
       - MYSQL_PASSWORD=pwd
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-uuser", "-ppwd", "-h", "localhost"]
-      interval: 2s
-      timeout: 1s
+      interval: 10s
+      timeout: 5s
       retries: 5

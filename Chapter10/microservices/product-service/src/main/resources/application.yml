@@ -14,7 +14,10 @@ eureka:
     leaseRenewalIntervalInSeconds: 5
     leaseExpirationDurationInSeconds: 5
 
-spring.data.mongodb.uri: mongodb://localhost:27017/product-db
+spring.data.mongodb:
+  host: localhost
+  port: 27017
+  database: product-db
 
 spring.cloud.stream:
   defaultBinder: rabbit
@@ -59,7 +62,7 @@ spring.profiles: docker
 
 server.port: 8080
 
-spring.data.mongodb.uri: mongodb://mongodb:27017/product-db
+spring.data.mongodb.host: mongodb
 
 spring.rabbitmq.host: rabbitmq
 

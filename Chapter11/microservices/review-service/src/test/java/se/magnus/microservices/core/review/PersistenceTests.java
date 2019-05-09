@@ -75,14 +75,10 @@ public class PersistenceTests {
         assertEqualsReview(savedEntity, entityList.get(0));
     }
 
-    @Test
+    @Test(expected = DataIntegrityViolationException.class)
    	public void duplicateError() {
-        try {
-            ReviewEntity entity = new ReviewEntity(1, 2, "a", "s", "c");
-            repository.save(entity);
-
-            fail("Expected an DataIntegrityViolationException");
-        } catch (DataIntegrityViolationException dive) {}
+        ReviewEntity entity = new ReviewEntity(1, 2, "a", "s", "c");
+        repository.save(entity);
     }
 
     @Test
