@@ -64,7 +64,7 @@ services:
       test: "mongo --eval 'db.stats().ok'"
       interval: 20s
       timeout: 5s
-      retries: 5
+      retries: 10
 
   # $ mysql -uroot -h127.0.0.1 -p
   mysql:
@@ -80,7 +80,7 @@ services:
       test: "/usr/bin/mysql --user=user --password=pwd --execute \"SHOW DATABASES;\""
       interval: 20s
       timeout: 5s
-      retries: 5
+      retries: 10
 
   rabbitmq:
     image: rabbitmq:3.7.8-management
@@ -91,4 +91,4 @@ services:
       test: ["CMD", "rabbitmqctl", "status"]
       interval: 20s
       timeout: 5s
-      retries: 5
+      retries: 10

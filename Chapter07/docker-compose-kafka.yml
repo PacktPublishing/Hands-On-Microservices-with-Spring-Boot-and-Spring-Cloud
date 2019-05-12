@@ -121,7 +121,7 @@ services:
       test: "/usr/bin/mysql --user=user --password=pwd --execute \"SHOW DATABASES;\""
       interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 10
 
   kafka:
     image: wurstmeister/kafka:2.12-2.1.0

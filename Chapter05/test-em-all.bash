@@ -67,8 +67,8 @@ function waitForService() {
     n=0
     until testUrl $url
     do
-        ((n++))
-        if [[ $n == 20 ]]
+        n=$((n + 1))
+        if [[ $n == 100 ]]
         then
             echo " Give up"
             exit 1

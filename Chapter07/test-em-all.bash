@@ -17,42 +17,42 @@
 
 function assertCurl() {
 
-  local expectedHttpCode=$1
-  local curlCmd="$2 -w \"%{http_code}\""
-  local result=$(eval $curlCmd)
-  local httpCode="${result:(-3)}"
-  RESPONSE='' && (( ${#result} > 3 )) && RESPONSE="${result%???}"
+    local expectedHttpCode=$1
+    local curlCmd="$2 -w \"%{http_code}\""
+    local result=$(eval $curlCmd)
+    local httpCode="${result:(-3)}"
+    RESPONSE='' && (( ${#result} > 3 )) && RESPONSE="${result%???}"
 
-  if [ "$httpCode" = "$expectedHttpCode" ]
-  then
-    if [ "$httpCode" = "200" ]
+    if [ "$httpCode" = "$expectedHttpCode" ]
     then
-      echo "Test OK (HTTP Code: $httpCode)"
+        if [ "$httpCode" = "200" ]
+        then
+            echo "Test OK (HTTP Code: $httpCode)"
+        else
+            echo "Test OK (HTTP Code: $httpCode, $RESPONSE)"
+        fi
+        return 0
     else
-      echo "Test OK (HTTP Code: $httpCode, $RESPONSE)"
+        echo  "Test FAILED, EXPECTED HTTP Code: $expectedHttpCode, GOT: $httpCode, WILL ABORT!"
+        echo  "- Failing command: $curlCmd"
+        echo  "- Response Body: $RESPONSE"
+        return 1
     fi
-    return 0
-  else
-      echo  "Test FAILED, EXPECTED HTTP Code: $expectedHttpCode, GOT: $httpCode, WILL ABORT!"
-      echo  "- Failing command: $curlCmd"
-      echo  "- Response Body: $RESPONSE"
-      return 1
-  fi
 }
 
 function assertEqual() {
 
-  local expected=$1
-  local actual=$2
+    local expected=$1
+    local actual=$2
 
-  if [ "$actual" = "$expected" ]
-  then
-    echo "Test OK (actual value: $actual)"
-    return 0
-  else
-    echo "Test FAILED, EXPECTED VALUE: $expected, ACTUAL VALUE: $actual, WILL ABORT"
-    return 1
-  fi
+    if [ "$actual" = "$expected" ]
+    then
+        echo "Test OK (actual value: $actual)"
+        return 0
+    else
+        echo "Test FAILED, EXPECTED VALUE: $expected, ACTUAL VALUE: $actual, WILL ABORT"
+        return 1
+    fi
 }
 
 function testUrl() {
@@ -71,8 +71,8 @@ function waitForService() {
     n=0
     until testUrl $url
     do
-        ((n++))
-        if [[ $n == 40 ]]
+        n=$((n + 1))
+        if [[ $n == 100 ]]
         then
             echo " Give up"
             exit 1
@@ -85,24 +85,24 @@ function waitForService() {
 
 function testCompositeCreated() {
 
-            # Expect that the Product Composite for productId $PROD_ID_REVS_RECS has been created with three recommendations and three reviews
-            if ! assertCurl 200 "curl http://$HOST:$PORT/product-composite/$PROD_ID_REVS_RECS -s"
-            then
-                echo -n "FAIL"
-                return 1
-            fi
+    # Expect that the Product Composite for productId $PROD_ID_REVS_RECS has been created with three recommendations and three reviews
+    if ! assertCurl 200 "curl http://$HOST:$PORT/product-composite/$PROD_ID_REVS_RECS -s"
+    then
+        echo -n "FAIL"
+        return 1
+    fi
 
-            set +e
-            assertEqual "$PROD_ID_REVS_RECS" $(echo $RESPONSE | jq .productId)
-            if [ "$?" -eq "1" ] ; then return 1; fi
+    set +e
+    assertEqual "$PROD_ID_REVS_RECS" $(echo $RESPONSE | jq .productId)
+    if [ "$?" -eq "1" ] ; then return 1; fi
 
-            assertEqual 3 $(echo $RESPONSE | jq ".recommendations | length")
-            if [ "$?" -eq "1" ] ; then return 1; fi
+    assertEqual 3 $(echo $RESPONSE | jq ".recommendations | length")
+    if [ "$?" -eq "1" ] ; then return 1; fi
 
-            assertEqual 3 $(echo $RESPONSE | jq ".reviews | length")
-            if [ "$?" -eq "1" ] ; then return 1; fi
+    assertEqual 3 $(echo $RESPONSE | jq ".reviews | length")
+    if [ "$?" -eq "1" ] ; then return 1; fi
 
-            set -e
+    set -e
 }
 
 function waitForMessageProcessing() {
@@ -114,7 +114,7 @@ function waitForMessageProcessing() {
     n=0
     until testCompositeCreated
     do
-        ((n++))
+        n=$((n + 1))
         if [[ $n == 40 ]]
         then
             echo " Give up"

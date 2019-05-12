@@ -20,7 +20,7 @@ spring.datasource:
   username: user
   password: pwd
 
-spring.datasource.hikari.connectionTimeout: 1000
+spring.datasource.hikari.initializationFailTimeout: 60000
 
 spring.cloud.stream:
   defaultBinder: rabbit
