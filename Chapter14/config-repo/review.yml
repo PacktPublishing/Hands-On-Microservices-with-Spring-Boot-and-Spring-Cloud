@@ -1,0 +1,59 @@
+server.port: 7003
+
+# Strongly recommend to set this property to "none" in a production environment!
+spring.jpa.hibernate.ddl-auto: update
+
+spring.datasource:
+  url: jdbc:mysql://localhost/review-db
+  username: user
+  password: pwd
+
+spring.datasource.hikari.initializationFailTimeout: 60000
+
+spring.cloud.stream:
+  defaultBinder: rabbit
+  default.contentType: application/json
+  bindings.input:
+    destination: reviews
+    group: reviewsGroup
+
+spring.cloud.stream.bindings.input.consumer:
+  maxAttempts: 3
+  backOffInitialInterval: 500
+  backOffMaxInterval: 1000
+  backOffMultiplier: 2.0
+
+spring.cloud.stream.rabbit.bindings.input.consumer:
+  autoBindDlq: true
+  republishToDlq: true
+
+spring.cloud.stream.kafka.bindings.input.consumer:
+  enableDlq: true
+
+logging:
+  level:
+    root: INFO
+    se.magnus: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+---
+spring.profiles: docker
+
+server.port: 8080
+
+spring.datasource.url: jdbc:mysql://mysql/review-db
+
+---
+spring.profiles: streaming_partitioned
+spring.cloud.stream.bindings.input.consumer:
+  partitioned: true
+  instanceCount: 2
+
+---
+spring.profiles: streaming_instance_0
+spring.cloud.stream.bindings.input.consumer.instanceIndex: 0
+
+---
+spring.profiles: streaming_instance_1
+spring.cloud.stream.bindings.input.consumer.instanceIndex: 1
