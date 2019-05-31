@@ -3,6 +3,7 @@ version: '2.1'
 services:
   product:
     build: microservices/product-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - MANAGEMENT_HEALTH_RABBIT_ENABLED=false
@@ -16,6 +17,7 @@ services:
 
   product-p1:
     build: microservices/product-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - MANAGEMENT_HEALTH_RABBIT_ENABLED=false
@@ -29,6 +31,7 @@ services:
 
   recommendation:
     build: microservices/recommendation-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - MANAGEMENT_HEALTH_RABBIT_ENABLED=false
@@ -42,6 +45,7 @@ services:
 
   recommendation-p1:
     build: microservices/recommendation-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - MANAGEMENT_HEALTH_RABBIT_ENABLED=false
@@ -55,6 +59,7 @@ services:
 
   review:
     build: microservices/review-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - MANAGEMENT_HEALTH_RABBIT_ENABLED=false
@@ -70,6 +75,7 @@ services:
 
   review-p1:
     build: microservices/review-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - MANAGEMENT_HEALTH_RABBIT_ENABLED=false
@@ -85,6 +91,7 @@ services:
 
   product-composite:
     build: microservices/product-composite-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - MANAGEMENT_HEALTH_RABBIT_ENABLED=false
@@ -100,17 +107,20 @@ services:
 
   eureka:
     build: spring-cloud/eureka-server
+    mem_limit: 350m
 
   gateway:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     build: spring-cloud/gateway
+    mem_limit: 350m
     ports:
       - "8080:8080"
 
   # $ mongo
   mongodb:
     image: mongo:3.6.9
+    mem_limit: 350m
     ports:
       - "27017:27017"
     command: mongod --smallfiles
@@ -123,6 +133,7 @@ services:
   # $ mysql -uroot -h127.0.0.1 -p
   mysql:
     image: mysql:5.7
+    mem_limit: 350m
     ports:
       - "3306:3306"
     environment:
@@ -138,6 +149,7 @@ services:
 
   kafka:
     image: wurstmeister/kafka:2.12-2.1.0
+    mem_limit: 350m
     ports:
       - "9092:9092"
     environment:
@@ -149,6 +161,7 @@ services:
 
   zookeeper:
     image: wurstmeister/zookeeper:3.4.6
+    mem_limit: 350m
     ports:
       - "2181:2181"
     environment:

@@ -3,6 +3,7 @@ version: '2.1'
 services:
   product:
     build: microservices/product-service
+    mem_limit: 350m
     networks:
       - my-network
     environment:
@@ -17,6 +18,7 @@ services:
 
   recommendation:
     build: microservices/recommendation-service
+    mem_limit: 350m
     networks:
       - my-network
     environment:
@@ -31,6 +33,7 @@ services:
 
   review:
     build: microservices/review-service
+    mem_limit: 350m
     networks:
       - my-network
     environment:
@@ -45,6 +48,7 @@ services:
 
   product-composite:
     build: microservices/product-composite-service
+    mem_limit: 350m
     networks:
       - my-network
     environment:
@@ -57,6 +61,7 @@ services:
 
   eureka:
     build: spring-cloud/eureka-server
+    mem_limit: 350m
     networks:
       - my-network
     environment:
@@ -66,6 +71,7 @@ services:
 
   gateway:
     build: spring-cloud/gateway
+    mem_limit: 350m
     ports:
       - "8443:8443"
     networks:
@@ -77,6 +83,7 @@ services:
 
   auth-server:
     build: spring-cloud/authorization-server
+    mem_limit: 350m
     networks:
       - my-network
     environment:
@@ -86,6 +93,7 @@ services:
 
   config-server:
     build: spring-cloud/config-server
+    mem_limit: 350m
     networks:
       - my-network
     environment:
@@ -99,6 +107,7 @@ services:
   # $ mongo
   mongodb:
     image: mongo:3.6.9
+    mem_limit: 350m
     networks:
       - my-network
     ports:
@@ -113,6 +122,7 @@ services:
   # $ mysql -uroot -h127.0.0.1 -p
   mysql:
     image: mysql:5.7
+    mem_limit: 350m
     networks:
       - my-network
     ports:
@@ -130,6 +140,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3.7.8-management
+    mem_limit: 350m
     networks:
       - my-network
     ports:
@@ -143,6 +154,7 @@ services:
 
   zipkin:
     image: openzipkin/zipkin:2.12.9
+    mem_limit: 512m
     networks:
       - my-network
     environment:

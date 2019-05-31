@@ -3,6 +3,7 @@ version: '2.1'
 services:
   product:
     build: microservices/product-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
@@ -15,6 +16,7 @@ services:
 
   recommendation:
     build: microservices/recommendation-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
@@ -27,6 +29,7 @@ services:
 
   review:
     build: microservices/review-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
@@ -39,6 +42,7 @@ services:
 
   product-composite:
     build: microservices/product-composite-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
@@ -53,6 +57,7 @@ services:
       - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
       - CONFIG_SERVER_PWD=${CONFIG_SERVER_PWD}
     build: spring-cloud/eureka-server
+    mem_limit: 350m
 
   gateway:
     environment:
@@ -60,6 +65,7 @@ services:
       - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
       - CONFIG_SERVER_PWD=${CONFIG_SERVER_PWD}
     build: spring-cloud/gateway
+    mem_limit: 350m
     ports:
       - "8443:8443"
 
@@ -69,6 +75,7 @@ services:
       - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
       - CONFIG_SERVER_PWD=${CONFIG_SERVER_PWD}
     build: spring-cloud/authorization-server
+    mem_limit: 350m
 
   config-server:
     environment:
@@ -79,10 +86,12 @@ services:
     volumes:
       - $PWD/config-repo:/config-repo
     build: spring-cloud/config-server
+    mem_limit: 350m
 
   # $ mongo
   mongodb:
     image: mongo:3.6.9
+    mem_limit: 350m
     ports:
       - "27017:27017"
     command: mongod --smallfiles
@@ -95,6 +104,7 @@ services:
   # $ mysql -uroot -h127.0.0.1 -p
   mysql:
     image: mysql:5.7
+    mem_limit: 350m
     ports:
       - "3306:3306"
     environment:
@@ -110,6 +120,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3.7.8-management
+    mem_limit: 350m
     ports:
       - 5672:5672
       - 15672:15672

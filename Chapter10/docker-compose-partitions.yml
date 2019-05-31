@@ -3,6 +3,7 @@ version: '2.1'
 services:
   product:
     build: microservices/product-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_STREAM_BINDINGS_INPUT_CONSUMER_PARTITIONED=true
@@ -16,6 +17,7 @@ services:
 
   product-p1:
     build: microservices/product-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_STREAM_BINDINGS_INPUT_CONSUMER_PARTITIONED=true
@@ -29,6 +31,7 @@ services:
 
   recommendation:
     build: microservices/recommendation-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_STREAM_BINDINGS_INPUT_CONSUMER_PARTITIONED=true
@@ -42,6 +45,7 @@ services:
 
   recommendation-p1:
     build: microservices/recommendation-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_STREAM_BINDINGS_INPUT_CONSUMER_PARTITIONED=true
@@ -55,6 +59,7 @@ services:
 
   review:
     build: microservices/review-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_STREAM_BINDINGS_INPUT_CONSUMER_PARTITIONED=true
@@ -68,6 +73,7 @@ services:
 
   review-p1:
     build: microservices/review-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_STREAM_BINDINGS_INPUT_CONSUMER_PARTITIONED=true
@@ -81,6 +87,7 @@ services:
 
   product-composite:
     build: microservices/product-composite-service
+    mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_STREAM_BINDINGS_OUTPUT-PRODUCTS_PRODUCER_PARTITION-KEY-EXPRESSION=payload.key
@@ -95,17 +102,20 @@ services:
 
   eureka:
     build: spring-cloud/eureka-server
+    mem_limit: 350m
 
   gateway:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     build: spring-cloud/gateway
+    mem_limit: 350m
     ports:
       - "8080:8080"
 
   # $ mongo
   mongodb:
     image: mongo:3.6.9
+    mem_limit: 350m
     ports:
       - "27017:27017"
     command: mongod --smallfiles
@@ -118,6 +128,7 @@ services:
   # $ mysql -uroot -h127.0.0.1 -p
   mysql:
     image: mysql:5.7
+    mem_limit: 350m
     ports:
       - "3306:3306"
     environment:
@@ -133,6 +144,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3.7.8-management
+    mem_limit: 350m
     ports:
       - 5672:5672
       - 15672:15672
