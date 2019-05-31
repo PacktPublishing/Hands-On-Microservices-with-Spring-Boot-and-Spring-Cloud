@@ -158,6 +158,7 @@ services:
     networks:
       - my-network
     environment:
+      - STORAGE_TYPE=mem
       - RABBIT_ADDRESSES=rabbitmq
     ports:
       - 9411:9411
