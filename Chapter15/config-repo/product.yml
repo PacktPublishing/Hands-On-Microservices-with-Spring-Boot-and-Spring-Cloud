@@ -1,0 +1,53 @@
+server.port: 7001
+
+spring.data.mongodb:
+  host: localhost
+  port: 27017
+  database: product-db
+
+spring.cloud.stream:
+  defaultBinder: rabbit
+  default.contentType: application/json
+  bindings.input:
+    destination: products
+    group: productsGroup
+
+spring.cloud.stream.bindings.input.consumer:
+  maxAttempts: 3
+  backOffInitialInterval: 500
+  backOffMaxInterval: 1000
+  backOffMultiplier: 2.0
+
+spring.cloud.stream.rabbit.bindings.input.consumer:
+  autoBindDlq: true
+  republishToDlq: true
+
+spring.cloud.stream.kafka.bindings.input.consumer:
+  enableDlq: true
+
+logging:
+  level:
+    root: INFO
+    se.magnus: DEBUG
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+
+---
+spring.profiles: docker
+
+server.port: 8080
+
+spring.data.mongodb.host: mongodb
+
+---
+spring.profiles: streaming_partitioned
+spring.cloud.stream.bindings.input.consumer:
+  partitioned: true
+  instanceCount: 2
+
+---
+spring.profiles: streaming_instance_0
+spring.cloud.stream.bindings.input.consumer.instanceIndex: 0
+
+---
+spring.profiles: streaming_instance_1
+spring.cloud.stream.bindings.input.consumer.instanceIndex: 1
