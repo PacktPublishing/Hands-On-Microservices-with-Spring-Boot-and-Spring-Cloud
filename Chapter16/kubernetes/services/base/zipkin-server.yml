@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipkin-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zipkin-server
+  template:
+    metadata:
+      labels:
+        app: zipkin-server
+    spec:
+      containers:
+      - name: zipkin-server
+        image: openzipkin/zipkin:2.12.9
+        env:
+          - name: STORAGE_TYPE
+            value: mem
+          - name: RABBIT_ADDRESSES
+            value: rabbitmq
+        ports:
+        - containerPort: 9411
+        resources:
+          limits:
+            memory: 512Mi
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /actuator/info
+            port: 9411
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 10
+          successThreshold: 1
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /actuator/health
+            port: 9411
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 3
+          successThreshold: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zipkin-server
+spec:
+  selector:
+    app: zipkin-server
+  ports:
+    - port: 9411

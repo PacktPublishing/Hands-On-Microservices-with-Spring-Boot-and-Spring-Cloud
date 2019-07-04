@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: config-server
+  template:
+    metadata:
+      labels:
+        app: config-server
+    spec:
+      containers:
+      - name: config-server
+        image: hands-on/config-server
+        imagePullPolicy: Never
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: "docker,native"
+        envFrom:
+          - secretRef:
+              name: config-server-secrets
+        ports:
+        - containerPort: 8888
+        resources:
+          limits:
+            memory: 350Mi
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /actuator/info
+            port: 8888
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 10
+          successThreshold: 1
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /actuator/health
+            port: 8888
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 3
+          successThreshold: 1
+        volumeMounts:
+          - name: config-repo-volume
+            mountPath: /config-repo
+      volumes:
+      - name: config-repo-volume
+        configMap:
+          name: config-repo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server
+spec:
+  selector:
+    app: config-server
+  ports:
+    - port: 8888

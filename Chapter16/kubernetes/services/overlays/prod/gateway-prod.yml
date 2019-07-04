@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+spec:
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      containers:
+      - name: gateway
+        image: hands-on/gateway:v1
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "docker,prod"
+        resources:
+          requests:
+            memory: "200Mi"
+          limits:
+            memory: "400Mi"

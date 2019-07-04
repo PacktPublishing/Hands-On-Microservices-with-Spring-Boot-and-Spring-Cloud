@@ -1,0 +1,54 @@
+server.port: 8443
+
+server.ssl:
+  key-store-type: PKCS12
+  key-store: classpath:keystore/edge.p12
+  key-store-password: '{cipher}f59a7a40ddbf79dff638480be6f1e4d79c0518fde989ab3b68ef5e32d5ae25f5'
+  key-alias: localhost
+
+app.config-server: localhost
+
+spring.cloud.gateway.routes:
+
+- id: product-composite
+  uri: http://product-composite
+  predicates:
+  - Path=/product-composite/**
+  #        filters:
+  #        - TokenRelay=
+
+- id: oauth-server
+  uri: http://${app.auth-server}
+  predicates:
+  - Path=/oauth/**
+
+- id: config-server
+  uri: http://${app.config-server}:8888
+  predicates:
+  - Path=/config/**
+  filters:
+  - RewritePath=/config/(?<segment>.*), /$\{segment}
+
+spring.security.oauth2.resourceserver.jwt.jwk-set-uri: http://${app.auth-server}/.well-known/jwks.json
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: TRACE
+
+---
+spring.profiles: docker
+
+app.config-server: config-server
+
+---
+spring.profiles: prod
+
+logging:
+  level:
+    root: WARN
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: WARN
+    org.springframework.cloud.gateway: WARN
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: WARN

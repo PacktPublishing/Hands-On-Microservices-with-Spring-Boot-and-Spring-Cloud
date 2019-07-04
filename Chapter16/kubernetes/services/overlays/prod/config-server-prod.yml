@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server
+spec:
+  selector:
+    matchLabels:
+      app: config-server
+  template:
+    metadata:
+      labels:
+        app: config-server
+    spec:
+      containers:
+      - name: config-server
+        image: hands-on/config-server:v1
+        env:
+          - name: LOGGING_LEVEL_ROOT
+            value: WARN
+          - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+            value: "health,info"
+        resources:
+          requests:
+            memory: "200Mi"
+          limits:
+            memory: "400Mi"

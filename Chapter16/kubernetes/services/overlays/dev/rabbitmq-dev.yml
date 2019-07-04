@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+      - name: rabbitmq
+        image: rabbitmq:3-management
+        ports:
+        - containerPort: 5671
+        - containerPort: 5672
+        - containerPort: 15672
+        resources:
+          limits:
+            memory: 350Mi
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: "/api/aliveness-test/%2F"
+            port: 15672
+            httpHeaders:
+              - name: Authorization
+                value: Basic Z3Vlc3Q6Z3Vlc3Q=
+          initialDelaySeconds: 300
+          periodSeconds: 60
+          timeoutSeconds: 1
+          failureThreshold: 2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq
+spec:
+  selector:
+    app: rabbitmq
+  ports:
+    - name: tcp-secure
+      port: 5671
+    - name: tcp-not-secure
+      port: 5672
+    - name: http-mgm-ui
+      port: 15672
+      

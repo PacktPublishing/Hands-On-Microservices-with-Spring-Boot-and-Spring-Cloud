@@ -1,0 +1,16 @@
+api:
+
+  common:
+    version:
+    title:
+    description:
+    termsOfServiceUrl:
+    license:
+    licenseUrl:
+
+    contact:
+      name:
+      url:
+      email:
+
+app.product-service.timeoutSec: 2
