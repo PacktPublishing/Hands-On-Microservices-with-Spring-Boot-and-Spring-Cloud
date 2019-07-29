@@ -1,0 +1,11 @@
+server.port: 9999
+
+---
+spring.profiles: docker
+
+server.port: 80
+
+---
+spring.profiles: prod
+
+logging.level.root: WARN

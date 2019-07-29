@@ -1,0 +1,14 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Issuer
+metadata:
+  name: letsencrypt-issuer-staging
+spec:
+  acme:
+    email: <your email address>
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-issuer-staging-account-key
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
