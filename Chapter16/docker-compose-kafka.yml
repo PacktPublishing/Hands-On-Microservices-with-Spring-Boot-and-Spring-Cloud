@@ -3,6 +3,7 @@ version: '2.1'
 services:
   product:
     build: microservices/product-service
+    image: hands-on/product-service
     mem_limit: 350m
     networks:
       - my-network
@@ -16,6 +17,7 @@ services:
 
   product-p1:
     build: microservices/product-service
+    image: hands-on/product-service
     mem_limit: 350m
     networks:
       - my-network
@@ -29,6 +31,7 @@ services:
 
   recommendation:
     build: microservices/recommendation-service
+    image: hands-on/recommendation-service
     mem_limit: 350m
     networks:
       - my-network
@@ -42,6 +45,7 @@ services:
 
   recommendation-p1:
     build: microservices/recommendation-service
+    image: hands-on/recommendation-service
     mem_limit: 350m
     networks:
       - my-network
@@ -55,6 +59,7 @@ services:
 
   review:
     build: microservices/review-service
+    image: hands-on/review-service
     mem_limit: 350m
     networks:
       - my-network
@@ -70,6 +75,7 @@ services:
 
   review-p1:
     build: microservices/review-service
+    image: hands-on/review-service
     mem_limit: 350m
     networks:
       - my-network
@@ -85,6 +91,7 @@ services:
 
   product-composite:
     build: microservices/product-composite-service
+    image: hands-on/product-composite-service
     mem_limit: 350m
     networks:
       - my-network
@@ -97,6 +104,7 @@ services:
 
   gateway:
     build: spring-cloud/gateway
+    image: hands-on/gateway
     mem_limit: 350m
     networks:
       - my-network
@@ -109,6 +117,7 @@ services:
 
   auth-server:
     build: spring-cloud/authorization-server
+    image: hands-on/auth-server
     mem_limit: 350m
     networks:
       - my-network
@@ -119,6 +128,7 @@ services:
 
   config-server:
     build: spring-cloud/config-server
+    image: hands-on/config-server
     mem_limit: 350m
     networks:
       - my-network

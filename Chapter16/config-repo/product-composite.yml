@@ -101,7 +101,7 @@ logging:
 ---
 spring.profiles: docker
 
-server.port: 8080
+server.port: 80
 
 ---
 spring.profiles: streaming_partitioned

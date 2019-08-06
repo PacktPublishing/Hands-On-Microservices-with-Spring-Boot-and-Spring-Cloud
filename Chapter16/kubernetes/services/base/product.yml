@@ -23,7 +23,7 @@ spec:
         - secretRef:
             name: config-client-credentials
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         resources:
           limits:
             memory: 350Mi
@@ -31,7 +31,7 @@ spec:
           httpGet:
             scheme: HTTP
             path: /actuator/info
-            port: 8080
+            port: 80
           initialDelaySeconds: 10
           periodSeconds: 10
           timeoutSeconds: 2
@@ -41,7 +41,7 @@ spec:
           httpGet:
             scheme: HTTP
             path: /actuator/health
-            port: 8080
+            port: 80
           initialDelaySeconds: 10
           periodSeconds: 10
           timeoutSeconds: 2
@@ -57,4 +57,4 @@ spec:
     app: product
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 80

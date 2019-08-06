@@ -177,16 +177,22 @@ function testCircuitBreaker() {
 
     echo "Start Circuit Breaker tests!"
 
-    echo "Restarting alpine-client..."
-    local ns=$NAMESPACE
-    if kubectl -n $ns get pod alpine-client > /dev/null ; then
-        kubectl -n $ns delete pod alpine-client --grace-period=1
-    fi
-    kubectl -n $ns run --restart=Never alpine-client --image=alpine --command -- sleep 600
-    echo "Waiting for alpine-client to be ready..."
-    kubectl -n $ns wait --for=condition=Ready pod/alpine-client
+    # Assume we are using Docker Compose if we are running on localhost, otherwise Kubernetes 
+    if [ "$HOST" = "localhost" ]
+    then
+        EXEC="docker run --rm -it --network=my-network alpine"
+    else
+        echo "Restarting alpine-client..."
+        local ns=$NAMESPACE
+        if kubectl -n $ns get pod alpine-client > /dev/null ; then
+            kubectl -n $ns delete pod alpine-client --grace-period=1
+        fi
+        kubectl -n $ns run --restart=Never alpine-client --image=alpine --command -- sleep 600
+        echo "Waiting for alpine-client to be ready..."
+        kubectl -n $ns wait --for=condition=Ready pod/alpine-client
 
-    EXEC="kubectl -n $ns exec alpine-client --"
+        EXEC="kubectl -n $ns exec alpine-client --"
+    fi
 
     # First, use the health - endpoint to verify that the circuit breaker is closed
     assertEqual "CLOSED" "$($EXEC wget product-composite/actuator/health -qO - | jq -r .details.productCircuitBreaker.details.state)"
@@ -235,7 +241,11 @@ function testCircuitBreaker() {
     assertEqual "OPEN_TO_HALF_OPEN"   "$($EXEC wget product-composite/actuator/circuitbreakerevents/product/STATE_TRANSITION -qO - | jq -r .circuitBreakerEvents[-2].stateTransition)"
     assertEqual "HALF_OPEN_TO_CLOSED" "$($EXEC wget product-composite/actuator/circuitbreakerevents/product/STATE_TRANSITION -qO - | jq -r .circuitBreakerEvents[-1].stateTransition)"
 
-    kubectl -n $ns delete pod alpine-client --grace-period=1
+    # Shutdown the client pod if we are using Kubernetes, i.e. not runnig on localhost. 
+    if [ "$HOST" != "localhost" ]
+    then
+        kubectl -n $ns delete pod alpine-client --grace-period=1
+    fi
 }
 
 set -e
