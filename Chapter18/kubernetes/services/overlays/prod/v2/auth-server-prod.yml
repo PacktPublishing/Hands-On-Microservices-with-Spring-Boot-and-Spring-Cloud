@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-server
+spec:
+  selector:
+    matchLabels:
+      app: auth-server
+  template:
+    metadata:
+      labels:
+        app: auth-server
+        version: v2
+    spec:
+      containers:
+      - name: auth-server
+        image: hands-on/auth-server:v2
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "docker,prod"
+        resources:
+          requests:
+            memory: "200Mi"
+          limits:
+            memory: "400Mi"

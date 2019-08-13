@@ -1,0 +1,128 @@
+api:
+
+  common:
+    version: 1.0.0
+    title: Sample API
+    description: Description of the API...
+    termsOfServiceUrl: MINE TERMS OF SERVICE URL
+    license: License
+    licenseUrl: MY LICENSE URL
+
+    contact:
+      name: Contact
+      url: My
+      email: me@mail.com
+
+  product-composite:
+
+    get-composite-product:
+      description: Returns a composite view of the specified product id
+      notes: |
+        # Normal response
+        If the requested product id is found the method will return information regarding:
+        1. Product information
+        1. Reviews
+        1. Recommendations
+        1. Service Addresses
+        (technical information regarding the addresses of the microservices that created the response)
+
+        # Expected partial and error responses
+        1. If no product information is found, a <b>404 - Not Found</b> error will be returned
+        1. In no recommendations or reviews are found for a product, a partial response will be returned
+
+    create-composite-product:
+      description: Creates a composite product
+      notes: |
+        # Normal response
+        The composite product information posted to the API will be splitted up and stored as separate product-info, recommendation and review entities.
+
+        # Expected error responses
+        1. If a product with the same productId as specified in the posted information already exists,
+           an <b>422 - Unprocessable Entity</b> error with a "duplicate key" error message will be returned
+
+    delete-composite-product:
+      description: Deletes a product composite
+      notes: |
+        # Normal response
+        Entities for product information, recommendations and reviews related to the specificed productId will be deleted.
+        The implementation of the delete method is idempotent, i.e. it can be called several times with the same response.
+        This means that a delete request of a non existing product will return <b>200 Ok</b>.
+
+server.port: 7000
+
+spring.cloud.stream:
+  defaultBinder: rabbit
+  default.contentType: application/json
+  bindings:
+    output-products:
+      destination: products
+      producer:
+        required-groups: auditGroup
+    output-recommendations:
+      destination: recommendations
+      producer:
+        required-groups: auditGroup
+    output-reviews:
+      destination: reviews
+      producer:
+        required-groups: auditGroup
+
+spring.security.oauth2.resourceserver.jwt.jwk-set-uri: http://${app.auth-server}/.well-known/jwks.json
+
+app.product-service.timeoutSec: 2
+
+resilience4j.retry:
+  backends:
+    product:
+      maxRetryAttempts: 3
+      waitDuration: 1000
+      retryExceptions:
+      - org.springframework.web.reactive.function.client.WebClientResponseException$InternalServerError
+
+resilience4j.circuitbreaker:
+  backends:
+    product:
+      registerHealthIndicator: true
+      ringBufferSizeInClosedState: 5
+      failureRateThreshold: 50
+      waitInterval: 10000
+      ringBufferSizeInHalfOpenState: 3
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      ignoreExceptions:
+        - se.magnus.util.exceptions.InvalidInputException
+        - se.magnus.util.exceptions.NotFoundException
+
+logging:
+  level:
+    root: INFO
+    se.magnus: DEBUG
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: TRACE
+
+---
+spring.profiles: docker
+
+server.port: 80
+
+---
+spring.profiles: streaming_partitioned
+
+spring.cloud.stream.bindings.output-products.producer:
+  partition-key-expression: payload.key
+  partition-count: 2
+
+spring.cloud.stream.bindings.output-recommendations.producer:
+  partition-key-expression: payload.key
+  partition-count: 2
+
+spring.cloud.stream.bindings.output-reviews.producer:
+  partition-key-expression: payload.key
+  partition-count: 2
+
+---
+spring.profiles: prod
+
+logging:
+  level:
+    root: WARN
+    se.magnus: WARN
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: WARN

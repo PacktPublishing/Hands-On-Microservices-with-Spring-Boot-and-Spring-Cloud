@@ -1,0 +1,40 @@
+server.port: 8443
+management.server.port: 8443
+
+server.ssl:
+  key-store-type: PKCS12
+  key-store: classpath:keystore/edge.p12
+  key-alias: localhost
+
+spring.cloud.gateway.routes:
+
+- id: product-composite
+  uri: http://product-composite
+  predicates:
+  - Path=/product-composite/**
+  #        filters:
+  #        - TokenRelay=
+
+- id: oauth-server
+  uri: http://${app.auth-server}
+  predicates:
+  - Path=/oauth/**
+
+spring.security.oauth2.resourceserver.jwt.jwk-set-uri: http://${app.auth-server}/.well-known/jwks.json
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: TRACE
+
+---
+spring.profiles: prod
+
+logging:
+  level:
+    root: WARN
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: WARN
+    org.springframework.cloud.gateway: WARN
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: WARN

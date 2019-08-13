@@ -1,0 +1,15 @@
+apiVersion: "authentication.istio.io/v1alpha1"
+kind: "Policy"
+metadata:
+  name: "jwt-authentication-policy"
+spec:
+  targets:
+  - name: product-composite
+  peers:
+  - mtls:
+      mode: PERMISSIVE
+  origins:
+  - jwt:
+      issuer: "http://auth-server.local"
+      jwksUri: "http://auth-server.hands-on.svc.cluster.local/.well-known/jwks.json"
+  principalBinding: USE_ORIGIN

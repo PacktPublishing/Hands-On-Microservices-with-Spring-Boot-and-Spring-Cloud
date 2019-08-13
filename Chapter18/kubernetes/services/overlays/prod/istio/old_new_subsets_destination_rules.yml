@@ -1,0 +1,69 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: product-composite-dr
+spec:
+  host: product-composite
+  subsets:
+  - name: old
+    labels:
+      version: v1
+  - name: new
+    labels:
+      version: v2
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: auth-server-dr
+spec:
+  host: auth-server
+  subsets:
+  - name: old
+    labels:
+      version: v1
+  - name: new
+    labels:
+      version: v2
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: product-dr
+spec:
+  host: product
+  subsets:
+  - name: old
+    labels:
+      version: v1
+  - name: new
+    labels:
+      version: v2
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: recommendation-dr
+spec:
+  host: recommendation
+  subsets:
+  - name: old
+    labels:
+      version: v1
+  - name: new
+    labels:
+      version: v2
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: review-dr
+spec:
+  host: review
+  subsets:
+  - name: old
+    labels:
+      version: v1
+  - name: new
+    labels:
+      version: v2

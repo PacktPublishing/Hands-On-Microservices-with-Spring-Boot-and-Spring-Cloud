@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: review-vs
+spec:
+  hosts:
+    - review
+  http:
+  - route:
+    - destination:
+        host: review
+    fault:
+      abort:
+        httpStatus: 500
+        percent: 20

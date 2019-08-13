@@ -1,0 +1,60 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-composite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-composite
+  template:
+    metadata:
+      labels:
+        app: product-composite
+        version: latest
+    spec:
+      containers:
+      - name: comp
+        image: hands-on/product-composite-service
+        imagePullPolicy: Never
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "docker"
+        - name: SPRING_CONFIG_LOCATION
+          value: file:/config-repo/application.yml,file:/config-repo/product-composite.yml
+        envFrom:
+        - secretRef:
+            name: rabbitmq-credentials
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: 350Mi
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /actuator/info
+            port: 4004
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 30
+          successThreshold: 1
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /actuator/health
+            port: 4004
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 3
+          successThreshold: 1
+        volumeMounts:
+        - name: config-repo-volume
+          mountPath: /config-repo
+      volumes:
+      - name: config-repo-volume
+        configMap:
+          name: config-repo-product-composite

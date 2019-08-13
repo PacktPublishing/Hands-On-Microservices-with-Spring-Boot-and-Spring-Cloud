@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: product-vs
+spec:
+  hosts:
+    - product
+  http:
+  - route:
+    - destination:
+        host: product
+    fault:
+      abort:
+        httpStatus: 500
+        percent: 20
