@@ -52,14 +52,6 @@ kubectl create secret tls tls-certificate --key kubernetes/cert/tls.key --cert k
 
 kubectl apply -k kubernetes/services/overlays/dev
 
-kubectl wait --timeout=300s --for=condition=available deployment auth-server
-kubectl wait --timeout=300s --for=condition=available deployment mongodb
-kubectl wait --timeout=300s --for=condition=available deployment mysql
-kubectl wait --timeout=300s --for=condition=available deployment product
-kubectl wait --timeout=300s --for=condition=available deployment product-composite
-kubectl wait --timeout=300s --for=condition=available deployment rabbitmq
-kubectl wait --timeout=300s --for=condition=available deployment recommendation
-kubectl wait --timeout=300s --for=condition=available deployment review
-kubectl wait --timeout=300s --for=condition=available deployment zipkin-server
+kubectl wait --timeout=600s --for=condition=ready pod --all
 
 set +ex

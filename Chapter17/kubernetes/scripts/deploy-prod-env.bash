@@ -39,9 +39,4 @@ docker tag hands-on/review-service            hands-on/review-service:v1
 
 kubectl apply -k kubernetes/services/overlays/prod
 
-kubectl wait --timeout=300s --for=condition=available deployment auth-server
-kubectl wait --timeout=300s --for=condition=available deployment product
-kubectl wait --timeout=300s --for=condition=available deployment product-composite
-kubectl wait --timeout=300s --for=condition=available deployment recommendation
-kubectl wait --timeout=300s --for=condition=available deployment review
-kubectl wait --timeout=300s --for=condition=available deployment zipkin-server
+kubectl wait --timeout=600s --for=condition=ready pod --all
