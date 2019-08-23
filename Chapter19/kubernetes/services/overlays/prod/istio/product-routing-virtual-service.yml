@@ -1,0 +1,25 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: product-vs
+spec:
+  hosts:
+    - product
+  http:
+  - match:
+    - headers:
+        X-group:
+          exact: test
+    route:
+    - destination:
+        host: product
+        subset: new
+  - route:
+    - destination:
+        host: product
+        subset: old
+      weight: 100
+    - destination:
+        host: product
+        subset: new
+      weight: 0

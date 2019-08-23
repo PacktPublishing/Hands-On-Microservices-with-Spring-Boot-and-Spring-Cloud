@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: product-composite-vs
+spec:
+  http:
+  - match:
+    - uri:
+        prefix: /product-composite
+    route:
+    - destination:
+        host: product-composite
+        port:
+          number: 80
+        subset: old
+      weight: 100
+    - destination:
+        host: product-composite
+        port:
+          number: 80
+        subset: new
+      weight: 0

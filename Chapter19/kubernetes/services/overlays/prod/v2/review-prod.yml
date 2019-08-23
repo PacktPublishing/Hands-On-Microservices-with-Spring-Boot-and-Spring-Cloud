@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: review
+spec:
+  selector:
+    matchLabels:
+      app: review
+  template:
+    metadata:
+      labels:
+        app: review
+        version: v2
+    spec:
+      containers:
+      - name: rev
+        image: hands-on/review-service:v2
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: "docker,prod"
+        resources:
+          requests:
+            memory: "200Mi"
+          limits:
+            memory: "400Mi"
