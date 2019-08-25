@@ -1,4 +1,4 @@
-FROM openjdk:11.0.1-jre-slim
+FROM openjdk:12.0.2
 
 EXPOSE 9999
 
