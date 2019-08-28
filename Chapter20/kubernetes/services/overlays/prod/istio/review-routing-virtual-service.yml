@@ -1,0 +1,25 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: review-vs
+spec:
+  hosts:
+    - review
+  http:
+  - match:
+    - headers:
+        X-group:
+          exact: test
+    route:
+    - destination:
+        host: review
+        subset: new
+  - route:
+    - destination:
+        host: review
+        subset: old
+      weight: 100
+    - destination:
+        host: review
+        subset: new
+      weight: 0        

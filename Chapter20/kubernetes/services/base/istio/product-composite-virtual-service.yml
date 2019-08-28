@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: product-composite-vs
+spec:
+  hosts:
+  - "minikube.me"
+  gateways:
+  - hands-on-gw
+  http:
+  - match:
+    - uri:
+        prefix: /product-composite
+    route:
+    - destination:
+        port:
+          number: 80
+        host: product-composite
+

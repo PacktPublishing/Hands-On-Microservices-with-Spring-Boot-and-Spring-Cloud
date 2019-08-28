@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluentd-hands-on-config
+  namespace: kube-system
+data:
+  fluentd-hands-on.conf: |
+
+    <match kubernetes.**istio**>
+      @type rewrite_tag_filter
+      <rule>
+        key log
+        pattern ^(.*)$
+        tag istio.${tag}
+      </rule>
+    </match>
+
+    <match kubernetes.**hands-on**>
+      @type rewrite_tag_filter
+      <rule>
+        key log
+        pattern ^(.*)$
+        tag spring-boot.${tag}
+      </rule>
+    </match>
+
+    <match spring-boot.**>
+      @type rewrite_tag_filter
+      <rule>
+        key log
+        pattern /^\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\.\d{3}.*/
+        tag parse.${tag}
+      </rule>
+      <rule>
+        key log
+        pattern /^.*/
+        tag check.exception.${tag}
+      </rule>
+    </match>
+
+    <match check.exception.spring-boot.**>
+      @type detect_exceptions
+      languages java
+      remove_tag_prefix check
+      message log
+      multiline_flush_interval 5
+    </match>
+
+    <filter parse.spring-boot.**>
+      @type parser
+      key_name log
+      time_key time
+      time_format %Y-%m-%d %H:%M:%S.%N
+      reserve_data true
+      # Sample log message: 2019-08-10 11:27:20.497 DEBUG [product-composite,677435df95da585a22d6d6a62db84082,59f32cef360398a4,true] 1 --- [or-http-epoll-1] s.m.u.h.GlobalControllerExceptionHandler : Returning HTTP status: 404 NOT_FOUND for path: /product-composite/13, message: Product Id: 13 not found
+      format /^(?<time>\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\.\d{3})\s+(?<spring.level>[^\s]+)\s+(\[(?<spring.service>[^,]*),(?<spring.trace>[^,]*),(?<spring.span>[^,]*),[^\]]*\])\s+(?<spring.pid>\d+)\s+---\s+\[\s*(?<spring.thread>[^\]]+)\]\s+(?<spring.class>[^\s]+)\s*:\s+(?<log>.*)$/
+    </filter>

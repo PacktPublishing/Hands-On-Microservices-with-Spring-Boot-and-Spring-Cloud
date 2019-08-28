@@ -1,0 +1,6 @@
+resources:
+- auth-server-deployment.yml
+- product-composite-deployment.yml
+- product-deployment.yml
+- recommendation-deployment.yml
+- review-deployment.yml

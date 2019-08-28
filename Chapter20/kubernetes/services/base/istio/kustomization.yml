@@ -1,0 +1,6 @@
+resources:
+- gateway.yml
+- auth-server-virtual-service.yml
+- product-composite-virtual-service.yml
+- jwt-authentication-policy.yml
+- internal_mtls_destination_rules.yml

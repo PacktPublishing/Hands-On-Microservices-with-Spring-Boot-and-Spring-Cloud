@@ -1,0 +1,50 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: product-composite-dr
+spec:
+  host: product-composite
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: auth-server-dr
+spec:
+  host: auth-server
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: product-dr
+spec:
+  host: product
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: recommendation-dr
+spec:
+  host: recommendation
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: review-dr
+spec:
+  host: review
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL

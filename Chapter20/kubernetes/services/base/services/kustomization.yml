@@ -1,0 +1,6 @@
+resources:
+- auth-server-service.yml
+- product-composite-service.yml
+- product-service.yml
+- recommendation-service.yml
+- review-service.yml

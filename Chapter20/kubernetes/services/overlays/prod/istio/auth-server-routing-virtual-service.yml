@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: auth-server-vs
+spec:
+  http:
+  - match:
+    - uri:
+        prefix: /oauth
+    route:
+    - destination:
+        host: auth-server
+        subset: old
+      weight: 100
+    - destination:
+        host: auth-server
+        subset: new
+      weight: 0

@@ -1,0 +1,8 @@
+bases:
+- ../../base/deployments
+- ../../base/services
+- ../../base/istio
+resources:
+- mongodb-dev.yml
+- rabbitmq-dev.yml
+- mysql-dev.yml
