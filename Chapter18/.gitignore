@@ -27,4 +27,4 @@ bin
 /.nb-gradle/
 .DS_Store
 ML-labb
-istio-1.2.2
+istio-1.2.*
