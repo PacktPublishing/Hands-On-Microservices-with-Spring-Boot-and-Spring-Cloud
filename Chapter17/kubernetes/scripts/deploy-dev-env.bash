@@ -50,8 +50,14 @@ kubectl create secret generic mysql-credentials \
 
 kubectl create secret tls tls-certificate --key kubernetes/cert/tls.key --cert kubernetes/cert/tls.crt
 
-kubectl apply -k kubernetes/services/overlays/dev
+# First deploy the resource managers and wait for their pods to become ready
+kubectl apply -f kubernetes/services/overlays/dev/rabbitmq-dev.yml
+kubectl apply -f kubernetes/services/overlays/dev/mongodb-dev.yml
+kubectl apply -f kubernetes/services/overlays/dev/mysql-dev.yml
+kubectl wait --timeout=600s --for=condition=ready pod --all
 
+# Next deploy the microservices and wait for their pods to become ready
+kubectl apply -k kubernetes/services/overlays/dev
 kubectl wait --timeout=600s --for=condition=ready pod --all
 
 set +ex

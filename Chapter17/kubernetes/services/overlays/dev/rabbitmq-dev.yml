@@ -25,7 +25,7 @@ spec:
         resources:
           limits:
             memory: 350Mi
-        livenessProbe:
+        readinessProbe:
           httpGet:
             scheme: HTTP
             path: "/api/aliveness-test/%2F"
@@ -33,10 +33,10 @@ spec:
             httpHeaders:
               - name: Authorization
                 value: Basic cmFiYml0LXVzZXItZGV2OnJhYmJpdC1wd2QtZGV2
-          initialDelaySeconds: 300
-          periodSeconds: 60
-          timeoutSeconds: 1
-          failureThreshold: 2
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 20
 ---
 apiVersion: v1
 kind: Service
