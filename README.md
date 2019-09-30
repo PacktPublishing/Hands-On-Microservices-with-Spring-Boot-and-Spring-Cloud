@@ -43,29 +43,19 @@ With the following software and hardware list you can run all code files present
 | -------- | ------------------------------------ | ----------------------------------- |
 |  |  |  |
 
-We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://github.com/PacktPublishing/Hands-On-Microservices-with-Spring-Boot-and-Spring-Cloud).
+We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://static.packt-cdn.com/downloads/9781789613476_ColorImages.pdf).
 
 ### Related products
 * Mastering Spring 5 - Second Edition  [[Packt]](https://www.packtpub.com/web-development/mastering-spring-5-1-second-edition?utm_source=github&utm_medium=repository&utm_campaign=9781789615692) [[Amazon]](https://www.amazon.com/dp/B07TZJG7BF)
 
 * Hands-On Full Stack Development with Spring Boot 2 and React - Second Edition  [[Packt]](https://www.packtpub.com/web-development/hands-full-stack-development-spring-boot-2-and-react-second-edition?utm_source=github&utm_medium=repository&utm_campaign=9781838822361) [[Amazon]](https://www.amazon.com/dp/B07S6F7YL3)
 
-## Get to Know the Author
-**Magnus Larsson** has been in the IT industry for more than 30 years, working as a consultant for large companies in Sweden such as Volvo, Ericsson, and AstraZeneca. He has seen a lot of different communication technologies come and go over the years, such as RPC, CORBA, SOAP, and REST. In the past, he struggled with the challenges associated with distributed systems as there was no substantial help from the software available at that time. This has, however, changed dramatically over the last few years with the introduction of open source projects such as Spring Cloud, Netflix OSS, Docker, and Kubernetes. Over the last five years, Magnus has been helping customers use these new software technologies and has also done several presentations and blog posts on the subject.	
 
+## Get to Know the Author
+**Magnus Larsson**
+Magnus Larsson has been in the IT industry for more than 30 years, working as a consultant for large companies in Sweden such as Volvo, Ericsson, and AstraZeneca. He has seen a lot of different communication technologies come and go over the years, such as RPC, CORBA, SOAP, and REST. In the past, he struggled with the challenges associated with distributed systems as there was no substantial help from the software available at that time. This has, however, changed dramatically over the last few years with the introduction of open source projects such as Spring Cloud, Netflix OSS, Docker, and Kubernetes. Over the last five years, Magnus has been helping customers use these new software technologies and has also done several presentations and blog posts on the subject.	
 
 ### Suggestions and Feedback
 [Click here](https://docs.google.com/forms/d/e/1FAIpQLSdy7dATC6QmEL81FIUuymZ0Wy9vH1jHkvpY57OiMeKGqib_Ow/viewform) if you have any feedback or suggestions.
 
 
-
-
-
-
-
-
-
-
-
-
-Reminder: SpringFox v3 is released, the source code of this book will be updated.
