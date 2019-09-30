@@ -37,7 +37,7 @@ logging.level.root: info
 **Following is what you need for this book:**
 This book is for Java and Spring developers and architects who want to learn how to break up their existing monoliths into microservices and deploy them either on-premises or in the cloud using Kubernetes as a container orchestrator and Istio as a service Mesh. No familiarity with microservices architecture is required to get started with this book.
 
-With the following software and hardware list you can run all code files present in the book (Chapter 1-).
+With the following software and hardware list you can run all code files present in the book (Chapter03-20).
 ### Software and Hardware List
 | Chapter | Software required | OS required |
 | -------- | ------------------------------------ | ----------------------------------- |
