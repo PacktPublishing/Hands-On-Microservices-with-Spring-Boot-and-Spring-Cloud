@@ -39,9 +39,9 @@ This book is for Java and Spring developers and architects who want to learn how
 
 With the following software and hardware list you can run all code files present in the book (Chapter03-20).
 ### Software and Hardware List
-| Chapter | Software required | OS required |
+| No. | Software required | OS required |
 | -------- | ------------------------------------ | ----------------------------------- |
-|  |  |  |
+| 1 | Spring | Windows, macOS, Linux |
 
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://static.packt-cdn.com/downloads/9781789613476_ColorImages.pdf).
 
