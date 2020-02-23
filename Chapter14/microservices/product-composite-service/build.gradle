@@ -22,7 +22,7 @@ sourceCompatibility = 1.8
 ext {
 	springCloudVersion = "Greenwich.SR1"
 //	springfoxVersion = "3.0.0-SNAPSHOT"
-	springfoxVersion = "3.0.0-20190226.020708"
+	springfoxVersion = "3.0.0-20190808.104142"
 	resilience4jVersion = "0.14.1"
 }
 
@@ -47,9 +47,14 @@ dependencies {
 	implementation('org.springframework.cloud:spring-cloud-starter-sleuth')
 	implementation('org.springframework.cloud:spring-cloud-starter-zipkin')
 	implementation('org.springframework.retry:spring-retry')
-	implementation("io.springfox:springfox-swagger2:${springfoxVersion}-23")
-	implementation("io.springfox:springfox-swagger-ui:${springfoxVersion}-23")
-	implementation("io.springfox:springfox-spring-webflux:${springfoxVersion}-15")
+	implementation("io.springfox:springfox-swagger2:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-swagger-ui:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-swagger-common:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-spring-webflux:${springfoxVersion}-31")
+	implementation("io.springfox:springfox-spi:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-core:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-schema:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-spring-web:${springfoxVersion}-38")
 	implementation("io.github.resilience4j:resilience4j-spring-boot2:${resilience4jVersion}")
 	implementation("io.github.resilience4j:resilience4j-reactor:${resilience4jVersion}")
 

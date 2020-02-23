@@ -19,6 +19,11 @@ group = 'se.magnus.microservices.composite.product'
 version = '1.0.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
+ext {
+//	springfoxVersion = "3.0.0-SNAPSHOT"
+	springfoxVersion = "3.0.0-20190808.104142"
+}
+
 repositories {
 	mavenCentral()
 	maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
@@ -29,9 +34,14 @@ dependencies {
 	implementation project(':util')
 	implementation('org.springframework.boot:spring-boot-starter-actuator')
 	implementation('org.springframework.boot:spring-boot-starter-webflux')
-	implementation('io.springfox:springfox-swagger2:3.0.0-SNAPSHOT')
-	implementation('io.springfox:springfox-swagger-ui:3.0.0-SNAPSHOT')
-	implementation('io.springfox:springfox-spring-webflux:3.0.0-SNAPSHOT')
+	implementation("io.springfox:springfox-swagger2:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-swagger-ui:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-swagger-common:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-spring-webflux:${springfoxVersion}-31")
+	implementation("io.springfox:springfox-spi:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-core:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-schema:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-spring-web:${springfoxVersion}-38")
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	testImplementation('io.projectreactor:reactor-test')
 }
