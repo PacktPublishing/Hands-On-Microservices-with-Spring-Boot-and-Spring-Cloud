@@ -1,5 +1,6 @@
 package se.magnus.microservices.core.review.services;
 
+import org.reactivestreams.Publisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ import se.magnus.util.exceptions.InvalidInputException;
 import se.magnus.util.http.ServiceUtil;
 
 import java.util.List;
+import java.util.function.Supplier;
+
+import static java.util.logging.Level.FINE;
 
 @RestController
 public class ReviewServiceImpl implements ReviewService {
@@ -59,7 +63,9 @@ public class ReviewServiceImpl implements ReviewService {
 
         if (productId < 1) throw new InvalidInputException("Invalid productId: " + productId);
 
-        return asyncFlux(getByProductId(productId)).log();
+        LOG.info("Will get reviews for product with id={}", productId);
+
+        return asyncFlux(() -> Flux.fromIterable(getByProductId(productId))).log(null, FINE);
     }
 
     protected List<Review> getByProductId(int productId) {
@@ -82,7 +88,7 @@ public class ReviewServiceImpl implements ReviewService {
         repository.deleteAll(repository.findByProductId(productId));
     }
 
-    private <T> Flux<T> asyncFlux(Iterable<T> iterable) {
-        return Flux.fromIterable(iterable).publishOn(scheduler);
+    private <T> Flux<T> asyncFlux(Supplier<Publisher<T>> publisherSupplier) {
+        return Flux.defer(publisherSupplier).subscribeOn(scheduler);
     }
 }
