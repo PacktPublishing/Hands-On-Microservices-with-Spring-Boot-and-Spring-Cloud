@@ -42,6 +42,7 @@ With the following software and hardware list you can run all code files present
 | No. | Software required | OS required |
 | -------- | ------------------------------------ | ----------------------------------- |
 | 1 | Spring | Windows, macOS, Linux |
+| 2 | Docker CE | Windows, macOS, Linux, see [supported platforms](https://docs.docker.com/engine/install/#supported-platforms) |
 
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://static.packt-cdn.com/downloads/9781789613476_ColorImages.pdf).
 
