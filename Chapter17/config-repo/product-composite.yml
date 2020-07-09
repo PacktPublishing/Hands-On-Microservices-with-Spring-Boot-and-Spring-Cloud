@@ -79,13 +79,15 @@ resilience4j.retry:
       retryExceptions:
       - org.springframework.web.reactive.function.client.WebClientResponseException$InternalServerError
 
+management.health.circuitbreakers.enabled: true
+
 resilience4j.circuitbreaker:
   backends:
     product:
       registerHealthIndicator: true
       ringBufferSizeInClosedState: 5
       failureRateThreshold: 50
-      waitInterval: 10000
+      waitDurationInOpenState: 10000
       ringBufferSizeInHalfOpenState: 3
       automaticTransitionFromOpenToHalfOpenEnabled: true
       ignoreExceptions:

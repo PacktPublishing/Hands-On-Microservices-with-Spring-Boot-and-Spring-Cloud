@@ -14,7 +14,7 @@ import se.magnus.microservices.core.recommendation.persistence.RecommendationRep
 import static org.junit.Assert.assertEquals;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.*;
-import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static reactor.core.publisher.Mono.just;
 
 @RunWith(SpringRunner.class)
@@ -124,10 +124,10 @@ public class RecommendationServiceApplicationTests {
 	private WebTestClient.BodyContentSpec getAndVerifyRecommendationsByProductId(String productIdQuery, HttpStatus expectedStatus) {
 		return client.get()
 			.uri("/recommendation" + productIdQuery)
-			.accept(APPLICATION_JSON_UTF8)
+			.accept(APPLICATION_JSON)
 			.exchange()
 			.expectStatus().isEqualTo(expectedStatus)
-			.expectHeader().contentType(APPLICATION_JSON_UTF8)
+			.expectHeader().contentType(APPLICATION_JSON)
 			.expectBody();
 	}
 
@@ -136,17 +136,17 @@ public class RecommendationServiceApplicationTests {
 		return client.post()
 			.uri("/recommendation")
 			.body(just(recommendation), Recommendation.class)
-			.accept(APPLICATION_JSON_UTF8)
+			.accept(APPLICATION_JSON)
 			.exchange()
 			.expectStatus().isEqualTo(expectedStatus)
-			.expectHeader().contentType(APPLICATION_JSON_UTF8)
+			.expectHeader().contentType(APPLICATION_JSON)
 			.expectBody();
 	}
 
 	private WebTestClient.BodyContentSpec deleteAndVerifyRecommendationsByProductId(int productId, HttpStatus expectedStatus) {
 		return client.delete()
 			.uri("/recommendation?productId=" + productId)
-			.accept(APPLICATION_JSON_UTF8)
+			.accept(APPLICATION_JSON)
 			.exchange()
 			.expectStatus().isEqualTo(expectedStatus)
 			.expectBody();

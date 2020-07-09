@@ -1,11 +1,9 @@
 buildscript {
 	ext {
-		springBootVersion = '2.1.0.RELEASE'
+		springBootVersion = '2.2.8.RELEASE'
 	}
 	repositories {
 		mavenCentral()
-		maven { url "https://repo.spring.io/snapshot" }
-		maven { url "https://repo.spring.io/milestone" }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -13,7 +11,7 @@ buildscript {
 }
 
 plugins {
-	id "io.spring.dependency-management" version "1.0.5.RELEASE"
+	id "io.spring.dependency-management" version "1.0.9.RELEASE"
 }
 
 
@@ -26,8 +24,6 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
-	maven { url "https://repo.spring.io/snapshot" }
-	maven { url "https://repo.spring.io/milestone" }
 	maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
 }
 

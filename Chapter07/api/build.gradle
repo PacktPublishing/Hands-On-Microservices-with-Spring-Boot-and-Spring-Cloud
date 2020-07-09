@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.1.2.RELEASE'
+		springBootVersion = '2.2.8.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-	id "io.spring.dependency-management" version "1.0.5.RELEASE"
+	id "io.spring.dependency-management" version "1.0.9.RELEASE"
 }
 
 

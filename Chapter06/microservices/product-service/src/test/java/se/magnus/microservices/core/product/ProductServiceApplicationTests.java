@@ -15,7 +15,7 @@ import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.*;
-import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static reactor.core.publisher.Mono.just;
 
 @RunWith(SpringRunner.class)
@@ -108,10 +108,10 @@ public class ProductServiceApplicationTests {
 	private WebTestClient.BodyContentSpec getAndVerifyProduct(String productIdPath, HttpStatus expectedStatus) {
 		return client.get()
 			.uri("/product" + productIdPath)
-			.accept(APPLICATION_JSON_UTF8)
+			.accept(APPLICATION_JSON)
 			.exchange()
 			.expectStatus().isEqualTo(expectedStatus)
-			.expectHeader().contentType(APPLICATION_JSON_UTF8)
+			.expectHeader().contentType(APPLICATION_JSON)
 			.expectBody();
 	}
 
@@ -120,17 +120,17 @@ public class ProductServiceApplicationTests {
 		return client.post()
 			.uri("/product")
 			.body(just(product), Product.class)
-			.accept(APPLICATION_JSON_UTF8)
+			.accept(APPLICATION_JSON)
 			.exchange()
 			.expectStatus().isEqualTo(expectedStatus)
-			.expectHeader().contentType(APPLICATION_JSON_UTF8)
+			.expectHeader().contentType(APPLICATION_JSON)
 			.expectBody();
 	}
 
 	private WebTestClient.BodyContentSpec deleteAndVerifyProduct(int productId, HttpStatus expectedStatus) {
 		return client.delete()
 			.uri("/product/" + productId)
-			.accept(APPLICATION_JSON_UTF8)
+			.accept(APPLICATION_JSON)
 			.exchange()
 			.expectStatus().isEqualTo(expectedStatus)
 			.expectBody();

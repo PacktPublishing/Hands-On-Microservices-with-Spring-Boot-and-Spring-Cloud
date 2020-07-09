@@ -22,7 +22,7 @@ import static java.util.Collections.singletonList;
 import static org.mockito.Mockito.when;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.*;
-import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(
@@ -90,10 +90,10 @@ public class ProductCompositeServiceApplicationTests {
 	private WebTestClient.BodyContentSpec getAndVerifyProduct(int productId, HttpStatus expectedStatus) {
 		return client.get()
 			.uri("/product-composite/" + productId)
-			.accept(APPLICATION_JSON_UTF8)
+			.accept(APPLICATION_JSON)
 			.exchange()
 			.expectStatus().isEqualTo(expectedStatus)
-			.expectHeader().contentType(APPLICATION_JSON_UTF8)
+			.expectHeader().contentType(APPLICATION_JSON)
 			.expectBody();
 	}
 }

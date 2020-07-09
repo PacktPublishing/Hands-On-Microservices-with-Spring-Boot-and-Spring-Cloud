@@ -14,7 +14,7 @@ import se.magnus.microservices.core.review.persistence.ReviewRepository;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.*;
-import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static reactor.core.publisher.Mono.just;
 
 @RunWith(SpringRunner.class)
@@ -130,10 +130,10 @@ public class ReviewServiceApplicationTests {
 	private WebTestClient.BodyContentSpec getAndVerifyReviewsByProductId(String productIdQuery, HttpStatus expectedStatus) {
 		return client.get()
 			.uri("/review" + productIdQuery)
-			.accept(APPLICATION_JSON_UTF8)
+			.accept(APPLICATION_JSON)
 			.exchange()
 			.expectStatus().isEqualTo(expectedStatus)
-			.expectHeader().contentType(APPLICATION_JSON_UTF8)
+			.expectHeader().contentType(APPLICATION_JSON)
 			.expectBody();
 	}
 
@@ -142,17 +142,17 @@ public class ReviewServiceApplicationTests {
 		return client.post()
 			.uri("/review")
 			.body(just(review), Review.class)
-			.accept(APPLICATION_JSON_UTF8)
+			.accept(APPLICATION_JSON)
 			.exchange()
 			.expectStatus().isEqualTo(expectedStatus)
-			.expectHeader().contentType(APPLICATION_JSON_UTF8)
+			.expectHeader().contentType(APPLICATION_JSON)
 			.expectBody();
 	}
 
 	private WebTestClient.BodyContentSpec deleteAndVerifyReviewsByProductId(int productId, HttpStatus expectedStatus) {
 		return client.delete()
 			.uri("/review?productId=" + productId)
-			.accept(APPLICATION_JSON_UTF8)
+			.accept(APPLICATION_JSON)
 			.exchange()
 			.expectStatus().isEqualTo(expectedStatus)
 			.expectBody();

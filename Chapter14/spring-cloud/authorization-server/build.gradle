@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.1.4.RELEASE'
+		springBootVersion = '2.2.8.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -30,17 +30,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 	implementation "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:${springBootVersion}"
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:2.1.1.RELEASE'
-	implementation 'org.springframework.cloud:spring-cloud-starter-config:2.1.1.RELEASE'
-	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:2.1.1.RELEASE'
-	implementation 'org.springframework.cloud:spring-cloud-starter-zipkin:2.1.1.RELEASE'
-	implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit:2.1.1.RELEASE'
-	implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka:2.1.1.RELEASE'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:2.2.3.RELEASE'
+	implementation 'org.springframework.cloud:spring-cloud-starter-config:2.2.3.RELEASE'
+	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:2.2.3.RELEASE'
+	implementation 'org.springframework.cloud:spring-cloud-starter-zipkin:2.2.3.RELEASE'
+	implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit:3.0.6.RELEASE'
+	implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka:3.0.6.RELEASE'
 	implementation 'org.springframework.retry:spring-retry'
 
-	implementation 'javax.xml.bind:jaxb-api'
-	implementation 'com.sun.xml.bind:jaxb-core'
-	implementation 'com.sun.xml.bind:jaxb-impl'
 	implementation 'com.nimbusds:nimbus-jose-jwt:6.7'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
