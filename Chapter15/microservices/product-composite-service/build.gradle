@@ -26,7 +26,6 @@ ext {
 
 repositories {
 	mavenCentral()
-	maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
 }
 
 dependencies {
@@ -45,7 +44,7 @@ dependencies {
 	implementation('org.springframework.cloud:spring-cloud-starter-sleuth')
 	implementation('org.springframework.cloud:spring-cloud-starter-zipkin')
 	implementation('org.springframework.retry:spring-retry')
-	implementation('io.springfox:springfox-boot-starter:3.0.0-SNAPSHOT')
+	implementation('io.springfox:springfox-boot-starter:3.0.0')
 	implementation("io.github.resilience4j:resilience4j-spring-boot2:${resilience4jVersion}")
 	implementation("io.github.resilience4j:resilience4j-reactor:${resilience4jVersion}")
 
