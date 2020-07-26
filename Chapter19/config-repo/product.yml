@@ -1,4 +1,6 @@
 server.port: 7001
+server.error.include-message: always
+
 spring.application.name: product
 
 spring.data.mongodb:

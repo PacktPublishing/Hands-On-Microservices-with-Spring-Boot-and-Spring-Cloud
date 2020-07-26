@@ -44,6 +44,7 @@ api:
         422 - An <b>Unprocessable Entity</b> error will be returned
 
 server.port: 7000
+server.error.include-message: always
 
 app:
   product-service:

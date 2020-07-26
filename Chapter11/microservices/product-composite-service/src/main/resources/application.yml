@@ -49,6 +49,7 @@ api:
         This means that a delete request of a non existing product will return <b>200 Ok</b>.
 
 server.port: 7000
+server.error.include-message: always
 
 spring.application.name: product-composite
 

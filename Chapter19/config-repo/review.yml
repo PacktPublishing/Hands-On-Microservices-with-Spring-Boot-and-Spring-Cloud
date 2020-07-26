@@ -1,4 +1,6 @@
 server.port: 7003
+server.error.include-message: always
+
 spring.application.name: review
 
 # Strongly recommend to set this property to "none" in a production environment!

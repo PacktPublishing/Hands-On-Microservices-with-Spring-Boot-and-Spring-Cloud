@@ -1,4 +1,5 @@
 server.port: 7000
+server.error.include-message: always
 
 app:
   product-service:
