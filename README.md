@@ -55,6 +55,10 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 
 * Page 102 (Last paragraph, line 2): **Once the CoreOS server has started running in its container you can, for example, ask what version of CoreOS that it runs with the cat /etc/redhat-release command.** _should be_ **Once the CoreOS server has started running in its container, you can, for example, ask what version of CoreOS it is running using the cat /etc/redhat-release command.**
 
+* Page 370 (_Adding programmable delays and random errors_ section) **faultPercentage: Causes the getProduct API on the product microservice**  _should be_ **faultPercent: Causes the getProduct API on the product microservice to**
+
+* Page 370 (_Changes in the API definitions_ section) **The two query parameters that we introduced previously, delay and faultPercentage, have been defined in the api project in the following two Java interfaces** _should be_ **The two query parameters that we introduced previously, delay and faultPercent, have been defined in the api project in the following two Java interfaces**
+
 ## Source code changes
 
 * July 26, 2020: Source code updated to use SpringFox 3.0.0, Spring Boot 2.3.2 and Spring Cloud Hoxton SR6. For details, see [added support for SpringFox 3.0.0](README_SpringFox-3.0.0_SpringBoot-2.3.2_SpringCloud-Hoxton-SR6.md). 
