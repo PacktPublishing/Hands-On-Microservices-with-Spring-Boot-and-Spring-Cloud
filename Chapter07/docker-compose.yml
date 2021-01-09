@@ -82,6 +82,8 @@ services:
     ports:
       - 5672:5672
       - 15672:15672
+    # Enable the web management page on port 15672 : http://127.0.0.1/15672 Username: guest, Password: guest
+    command: rabbitmq-plugins enable rabbitmq_management
     healthcheck:
       test: ["CMD", "rabbitmqctl", "status"]
       interval: 10s
