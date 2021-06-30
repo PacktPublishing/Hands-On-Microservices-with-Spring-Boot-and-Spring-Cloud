@@ -1,3 +1,5 @@
+
+
 package se.magnus.microservices.composite.product;
 
 import org.springframework.boot.SpringApplication;
