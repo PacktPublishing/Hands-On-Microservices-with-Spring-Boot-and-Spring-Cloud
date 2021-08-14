@@ -5,7 +5,7 @@
 
 # Hands-On Microservices with Spring Boot and Spring Cloud 
 
-<a href="https://www.packtpub.com/web-development/hands-on-microservices-with-spring-boot-and-spring-cloud?utm_source=github&utm_medium=repository&utm_campaign=9781789613476"><img src="https://www.packtpub.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/9/7/9781789613476-original.jpeg" alt="Hands-On Microservices with Spring Boot and Spring Cloud " height="256px" align="right"></a>
+<a href="https://www.packtpub.com/web-development/hands-on-microservices-with-spring-boot-and-spring-cloud?utm_source=github&utm_medium=repository&utm_campaign=9781789613476"><img src="https://static.packt-cdn.com/products/9781789613476/cover/normal" alt="Hands-On Microservices with Spring Boot and Spring Cloud " height="256px" align="right"></a>
 
 This is the code repository for [Hands-On Microservices with Spring Boot and Spring Cloud ](https://www.packtpub.com/web-development/hands-on-microservices-with-spring-boot-and-spring-cloud?utm_source=github&utm_medium=repository&utm_campaign=9781789613476), published by Packt.
 
@@ -75,7 +75,7 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 
 
 ## Get to Know the Author
-**Magnus Larsson** has been in the IT industry for more than 30 years, working as a consultant for large companies in Sweden such as Volvo, Ericsson, and AstraZeneca. He has seen a lot of different communication technologies come and go over the years, such as RPC, CORBA, SOAP, and REST. In the past, he struggled with the challenges associated with distributed systems as there was no substantial help from the software available at that time. This has, however, changed dramatically over the last few years with the introduction of open source projects such as Spring Cloud, Netflix OSS, Docker, and Kubernetes. Over the last five years, Magnus has been helping customers use these new software technologies and has also done several presentations and blog posts on the subject.	
+**Magnus Larsson** has been in the IT industry for 35 years, working as a consultant for large companies in Sweden such as Volvo, Ericsson, and AstraZeneca. In the past, he struggled with the challenges associated with distributed systems. Today, these challenges can be handled with open source tools such as Spring Cloud, Kubernetes, and Istio. Over the last years, Magnus has been helping customers use these tools and has also given several presentations and written blog posts on the subject.
 
 ### Suggestions and Feedback
 [Click here](https://docs.google.com/forms/d/e/1FAIpQLSdy7dATC6QmEL81FIUuymZ0Wy9vH1jHkvpY57OiMeKGqib_Ow/viewform) if you have any feedback or suggestions.
