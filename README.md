@@ -3,6 +3,14 @@
 -----
 *If you have read this book, please leave a review on [Amazon.com](https://www.amazon.com/gp/product/1789613477).     Potential readers can then use your unbiased opinion to help them make purchase decisions. Thank you. The $5 campaign         runs from __December 15th 2020__ to __January 13th 2021.__*
 
+> <a href="https://www.packtpub.com/product/microservices-with-spring-boot-and-spring-cloud-second-edition/9781801072977"><img src="https://static.packt-cdn.com/products/9781801072977/cover/smaller" alt="Microservices with Spring Boot and Spring Cloud, 2nd edition" height="128px" align="right"></a>
+> 
+> The **second edition** of the book is now released, see [Amazon.com](https://www.amazon.com/Microservices-Spring-Boot-Cloud-microservices-dp-1801072973/dp/1801072973).  
+> 
+> It has been updated for the most recent versions of Spring, Java, Kubernetes, and Istio. In addition, support is added for building and running all examples on a Windows PC using WSL 2. Finally, a chapter has been added about native compile, enabling Java-based microservices to start up in a fraction of a second.
+>   
+> Here is a summary of the most significant changes and news in the second edition: [blog post](https://callistaenterprise.se/blogg/teknik/2021/08/09/microservices-book-2nd-edition-updates/).
+  
 # Hands-On Microservices with Spring Boot and Spring Cloud 
 
 <a href="https://www.packtpub.com/web-development/hands-on-microservices-with-spring-boot-and-spring-cloud?utm_source=github&utm_medium=repository&utm_campaign=9781789613476"><img src="https://static.packt-cdn.com/products/9781789613476/cover/normal" alt="Hands-On Microservices with Spring Boot and Spring Cloud " height="256px" align="right"></a>
