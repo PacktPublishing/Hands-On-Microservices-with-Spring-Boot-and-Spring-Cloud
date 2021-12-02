@@ -10,6 +10,8 @@
 > It has been updated for the most recent versions of Spring, Java, Kubernetes, and Istio. In addition, support is added for building and running all examples on a Windows PC using WSL 2. Finally, a chapter has been added about native compile, enabling Java-based microservices to start up in a fraction of a second.
 >   
 > Here is a summary of the most significant changes and news in the second edition: [blog post](https://callistaenterprise.se/blogg/teknik/2021/08/09/microservices-book-2nd-edition-updates/).
+>
+> The GitHub repo for the second edition can be found here: https://github.com/PacktPublishing/Microservices-with-Spring-Boot-and-Spring-Cloud-2E.git.
   
 # Hands-On Microservices with Spring Boot and Spring Cloud 
 
